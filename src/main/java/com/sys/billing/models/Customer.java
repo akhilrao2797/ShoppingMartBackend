@@ -1,5 +1,6 @@
 package com.sys.billing.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
@@ -13,12 +14,16 @@ import java.util.UUID;
 @Entity
 @Getter
 @Setter
-public class Inventory {
-
+public class Customer {
     @Id
     @GeneratedValue(generator="uuid")
     @GenericGenerator(name="uuid",strategy = "uuid2")
-    private UUID itemId;
-    private int totalQuantity;
-    private int thresholdQuantity;
+    private UUID customerId;
+    private String customerName;
+    private String customerPhone;
+    private String customerAddress;
+    @JsonIgnore
+    private int discount;
+    @JsonIgnore
+    private String coupons;
 }
