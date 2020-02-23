@@ -9,7 +9,7 @@ public class Cart {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    private Items item;
+    private Item item;
     private float itemFinalPrice;
     private float itemQuantity;
 }
