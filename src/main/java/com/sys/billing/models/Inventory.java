@@ -16,10 +16,9 @@ public class Inventory implements Serializable {
     @Id
     @GeneratedValue(generator="uuid")
     @GenericGenerator(name="uuid",strategy = "uuid2")
-    private UUID inventoryItemId;
+    private UUID inventoryId;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private Items item;
-    private int totalQuantity;
-    private int thresholdQuantity;
+    private short totalQuantity;
+
+    private short thresholdQuantity;
 }

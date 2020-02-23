@@ -13,7 +13,6 @@ import java.util.UUID;
 @Entity
 @Getter
 @Setter
-@IdClass(Items.ItemKey.class)
 public class Items implements Serializable {
 
     @Id
@@ -21,11 +20,13 @@ public class Items implements Serializable {
     @GenericGenerator(name="uuid",strategy = "uuid2")
     private UUID itemId;
 
-    @Id
     private short itemWeight;
 
     @NotEmpty(message = "item name is mandatory")
     private String itemName;
+
+    @NotEmpty(message = "item MRP is mandatory")
+    private float itemMRP;
 
     @NotEmpty(message = "item price is mandatory")
     private float itemPrice;
@@ -33,12 +34,7 @@ public class Items implements Serializable {
     @NotNull
     private String itemManufacturer;
 
-    class ItemKey implements Serializable{
-        UUID itemId;
-        short itemWeight;
-    }
-
+    @OneToOne(cascade = CascadeType.ALL)
+    private Inventory inventory;
 }
 
-//@OneToOne(mappedBy = "item", cascade = CascadeType.ALL)
-//    private Inventory inventory;
