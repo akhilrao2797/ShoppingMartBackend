@@ -1,11 +1,13 @@
 package com.sys.billing.controllers;
 
 import com.sys.billing.models.Items;
-import com.sys.billing.repositories.ItemRepository;
 import com.sys.billing.services.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
@@ -16,22 +18,22 @@ public class ItemController {
     public ItemService itemService;
 
     @GetMapping()
-    List<Items> getItems() {
-        return itemService.getAllItems();
+    ResponseEntity<List<Items>> getItems() {
+        return new ResponseEntity<List<Items>>(itemService.getAllItems(), HttpStatus.OK);
     }
 
     @PostMapping()
-    String addItems(@RequestBody List<Items> items) {
-        return itemService.postItems(items);
+    ResponseEntity<String> addItems(@Valid @RequestBody List<Items> items) {
+        return new ResponseEntity<String>(itemService.postItems(items), HttpStatus.OK);
     }
 
     @PutMapping()
-    String changeItems(@RequestBody List<Items> items){
-        return itemService.updateItems(items);
+    ResponseEntity<String> changeItems(@Valid @RequestBody List<Items> items){
+        return new ResponseEntity<String>(itemService.updateItems(items), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    String deleteItem(@PathVariable("id") final UUID uuid) {
-        return itemService.deleteItem(uuid);
+    ResponseEntity<String> deleteItem(@PathVariable("id") final UUID uuid) {
+        return new ResponseEntity<String>(itemService.deleteItem(uuid), HttpStatus.OK);
     }
 }
