@@ -15,6 +15,7 @@ import java.util.List;
 @RequestMapping("/customer")
 public class CustomerController {
     private CustomerService customerService;
+
     @Autowired
     CustomerController(CustomerService customerService){
         this.customerService = customerService;
@@ -30,7 +31,7 @@ public class CustomerController {
         return new ResponseEntity<List<Customer>>(customerService.getAllCustomers(), HttpStatus.OK);
     }
 
-    @PutMapping
+    @PutMapping()
     ResponseEntity<String> updateCustomerInfo(@Valid @RequestBody final Customer customer){
         return new ResponseEntity<String>(customerService.updateCustomerInfo(customer), HttpStatus.OK);
     }
