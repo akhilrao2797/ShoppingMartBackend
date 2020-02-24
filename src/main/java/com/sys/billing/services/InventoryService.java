@@ -3,9 +3,14 @@ package com.sys.billing.services;
 import com.sys.billing.models.Inventory;
 import com.sys.billing.models.Item;
 import com.sys.billing.repositories.InventoryRepository;
-import com.sys.billing.repositories.ItemRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
 
 @Service
 public class InventoryService {
@@ -17,6 +22,18 @@ public class InventoryService {
     public InventoryService(ItemService itemService, InventoryRepository inventoryRepository){
         this.inventoryRepository = inventoryRepository;
         this.itemService = itemService;
+    }
+
+    @Scheduled(cron = "0 0 10 * * *")
+    public List<Item> getItemsNearToFinish(){
+        List<Item> items = itemService.getAllItems()
+                .stream()
+                .filter(item -> {
+                    int value = item.getInventory().getTotalQuantity() - item.getInventory().getThresholdQuantity();
+                    return (value > 0)? false:true;
+                })
+                .collect(Collectors.toList());
+        return items;
     }
 
     public Inventory addItemToInventory(Inventory inventory) {

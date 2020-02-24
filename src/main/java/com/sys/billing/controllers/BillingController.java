@@ -1,7 +1,7 @@
 package com.sys.billing.controllers;
 
 import com.sys.billing.models.Bill;
-import com.sys.billing.services.BillService;
+import com.sys.billing.services.BillingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +14,7 @@ import javax.validation.Valid;
 public class BillingController {
 
     @Autowired
-    private BillService billService;
+    private BillingService billService;
 
     @PostMapping()
     ResponseEntity<Bill> saveBill(@Valid @RequestBody final Bill bill){

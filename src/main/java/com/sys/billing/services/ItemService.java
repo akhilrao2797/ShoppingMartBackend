@@ -31,7 +31,7 @@ public class ItemService {
         return "Successfully deleted";
     }
 
-    public Item getItemByItemName(String name){
-        return itemRepository.findItemByItemName(name);
+    public Item getItemByItemName(String itemName){
+        return itemRepository.findItemByItemName(itemName);
     }
 }
