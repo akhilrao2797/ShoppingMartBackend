@@ -13,7 +13,7 @@ import java.util.UUID;
 @Entity
 @Getter
 @Setter
-public class Items implements Serializable {
+public class Item implements Serializable {
 
     @Id
     @GeneratedValue(generator="uuid")

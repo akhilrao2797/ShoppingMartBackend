@@ -1,6 +1,6 @@
 package com.sys.billing.controllers;
 
-import com.sys.billing.models.Items;
+import com.sys.billing.models.Item;
 import com.sys.billing.services.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,17 +18,17 @@ public class ItemController {
     public ItemService itemService;
 
     @GetMapping()
-    ResponseEntity<List<Items>> getItems() {
-        return new ResponseEntity<List<Items>>(itemService.getAllItems(), HttpStatus.OK);
+    ResponseEntity<List<Item>> getItems() {
+        return new ResponseEntity<List<Item>>(itemService.getAllItems(), HttpStatus.OK);
     }
 
     @PostMapping()
-    ResponseEntity<String> addItems(@Valid @RequestBody List<Items> items) {
+    ResponseEntity<String> addItems(@Valid @RequestBody List<Item> items) {
         return new ResponseEntity<String>(itemService.postItems(items), HttpStatus.OK);
     }
 
     @PutMapping()
-    ResponseEntity<String> changeItems(@Valid @RequestBody List<Items> items){
+    ResponseEntity<String> changeItems(@Valid @RequestBody List<Item> items){
         return new ResponseEntity<String>(itemService.updateItems(items), HttpStatus.OK);
     }
 

@@ -8,6 +8,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -31,4 +32,6 @@ public class Bill implements Serializable {
     private float totalPrice;
 
     private Payment_Mode paymentMode;
+    
+    private LocalDateTime dateTime;
 }
