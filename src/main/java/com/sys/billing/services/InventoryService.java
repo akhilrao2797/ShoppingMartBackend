@@ -3,12 +3,14 @@ package com.sys.billing.services;
 import com.sys.billing.models.Inventory;
 import com.sys.billing.models.Item;
 import com.sys.billing.repositories.InventoryRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
 
 @Service
 public class InventoryService {

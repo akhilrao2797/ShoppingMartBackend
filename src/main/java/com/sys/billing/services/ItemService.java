@@ -27,11 +27,11 @@ public class ItemService {
     }
 
     public String deleteItem(UUID uuid) {
-        itemRepository.delete(itemRepository.findItemsByItemId(uuid));
+        itemRepository.delete(itemRepository.findItemByItemId(uuid));
         return "Successfully deleted";
     }
 
-    public Item getItemByItemName(String itemName) {
-        return itemRepository.findItemBy
+    public Item getItemByItemName(String itemName){
+        return itemRepository.findItemByItemName(itemName);
     }
 }

@@ -8,5 +8,6 @@ import java.util.UUID;
 
 @Repository
 public interface ItemRepository extends JpaRepository<Item, Integer> {
-    Item findItemsByItemId(UUID uuid);
+    Item findItemByItemId(UUID uuid);
+    Item findItemByItemName(String name);
 }
