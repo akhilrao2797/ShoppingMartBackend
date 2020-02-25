@@ -1,16 +1,14 @@
 package com.sys.billing.models;
 
-import lombok.Getter;
-import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.UUID;
 
 @Entity
-@Getter
-@Setter
 public class Inventory implements Serializable {
 
     @Id
@@ -21,4 +19,31 @@ public class Inventory implements Serializable {
     private short totalQuantity;
 
     private short thresholdQuantity;
+
+    public UUID getInventoryId() {
+        return inventoryId;
+    }
+
+    public short getTotalQuantity() {
+        return totalQuantity;
+    }
+
+    public short getThresholdQuantity() {
+        return thresholdQuantity;
+    }
+
+    public Inventory setInventoryId(UUID inventoryId) {
+        this.inventoryId = inventoryId;
+        return this;
+    }
+
+    public Inventory setTotalQuantity(short totalQuantity) {
+        this.totalQuantity = totalQuantity;
+        return this;
+    }
+
+    public Inventory setThresholdQuantity(short thresholdQuantity) {
+        this.thresholdQuantity = thresholdQuantity;
+        return this;
+    }
 }
