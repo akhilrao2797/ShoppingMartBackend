@@ -1,13 +1,10 @@
 package com.sys.billing.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Getter;
-import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
@@ -16,8 +13,6 @@ import java.io.Serializable;
 import java.util.UUID;
 
 @Entity
-@Getter
-@Setter
 public class Customer implements Serializable {
     @Id
     @GeneratedValue(generator="uuid")
@@ -42,4 +37,67 @@ public class Customer implements Serializable {
 
     @JsonIgnore
     private String coupons;
+
+    public UUID getCustomerId() {
+        return customerId;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public String getCustomerPhone() {
+        return customerPhone;
+    }
+
+    public String getCustomerAddress() {
+        return customerAddress;
+    }
+
+    public String getCustomerEmail() {
+        return customerEmail;
+    }
+
+    public int getDiscount() {
+        return discount;
+    }
+
+    public String getCoupons() {
+        return coupons;
+    }
+
+    public Customer setCustomerId(UUID customerId) {
+        this.customerId = customerId;
+        return this;
+    }
+
+    public Customer setCustomerName(String customerName) {
+        this.customerName = customerName;
+        return this;
+    }
+
+    public Customer setCustomerPhone(String customerPhone) {
+        this.customerPhone = customerPhone;
+        return this;
+    }
+
+    public Customer setCustomerAddress(String customerAddress) {
+        this.customerAddress = customerAddress;
+        return this;
+    }
+
+    public Customer setCustomerEmail(String customerEmail) {
+        this.customerEmail = customerEmail;
+        return this;
+    }
+
+    public Customer setDiscount(int discount) {
+        this.discount = discount;
+        return this;
+    }
+
+    public Customer setCoupons(String coupons) {
+        this.coupons = coupons;
+        return this;
+    }
 }
