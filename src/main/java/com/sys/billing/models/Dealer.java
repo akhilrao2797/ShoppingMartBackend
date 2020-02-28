@@ -2,10 +2,7 @@ package com.sys.billing.models;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -22,11 +19,14 @@ public class Dealer {
     private String dealerPhone;
     @Email(message = "email should be valid")
     private String dealerEmail;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(referencedColumnName = "itemName", name = "item")
     private Item item;
     private float balanceAmount;
     private LocalDateTime lastStockRefreshDate;
     private LocalDateTime recentStockRefreshDate;
+
+
 
     public UUID getDealerId() {
         return dealerId;

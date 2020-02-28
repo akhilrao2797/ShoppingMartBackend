@@ -4,9 +4,10 @@ import com.sys.billing.utils.Payment_Mode;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -18,18 +19,20 @@ public class Bill implements Serializable {
     @GenericGenerator(name="uuid",strategy = "uuid2")
     private UUID billId;
 
-    @NotEmpty(message = "Should contains min 1 item to make a bill")
-    @ElementCollection
-    private List<Cart> cartItems;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE, orphanRemoval = true)
+    private List<Cart> cartItems = new ArrayList<>();
 
     @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "customer", referencedColumnName = "customerName")
     private Customer customer;
 
+    @NotNull
     private float totalPrice;
 
     private Payment_Mode paymentMode;
     
     private LocalDateTime dateTime;
+
 
     public UUID getBillId() {
         return billId;
