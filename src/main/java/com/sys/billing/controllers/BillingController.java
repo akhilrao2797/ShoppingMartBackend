@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/bill")
@@ -22,7 +23,7 @@ public class BillingController {
     }
 
     @GetMapping("/{id}")
-    ResponseEntity<Bill> getBillById(@PathVariable("id") final Long id){
+    ResponseEntity<Bill> getBillById(@PathVariable("id") final UUID id){
         return new ResponseEntity<Bill>(billService.getBill(id), HttpStatus.OK);
     }
 }

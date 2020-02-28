@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.UUID;
@@ -19,7 +19,7 @@ public class Customer implements Serializable {
     @GenericGenerator(name="uuid",strategy = "uuid2")
     private UUID customerId;
 
-    @NotNull
+    @NotEmpty
     @Size(max = 26)
     private String customerName;
 

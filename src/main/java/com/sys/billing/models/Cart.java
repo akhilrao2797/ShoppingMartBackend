@@ -1,6 +1,7 @@
 package com.sys.billing.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Cart {
@@ -9,8 +10,14 @@ public class Cart {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(referencedColumnName = "itemName", name = "item")
     private Item item;
+
+    @NotNull
     private float itemFinalPrice;
+
+    @NotNull
     private float itemQuantity;
 
     public long getId() {

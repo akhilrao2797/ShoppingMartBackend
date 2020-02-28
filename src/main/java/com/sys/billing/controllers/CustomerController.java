@@ -1,7 +1,6 @@
 package com.sys.billing.controllers;
 
 import com.sys.billing.models.Customer;
-import com.sys.billing.repositories.CustomerRepository;
 import com.sys.billing.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,7 +13,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/customer")
 public class CustomerController {
+
     private CustomerService customerService;
+
     @Autowired
     CustomerController(CustomerService customerService){
         this.customerService = customerService;
